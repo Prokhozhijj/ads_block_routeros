@@ -1,0 +1,29 @@
+# Basic hosts list
+https://cdn.jsdelivr.net/gh/tarampampam/mikrotik-hosts-parser@master/.hosts/basic.txt
+
+# Windows telemetry services ~360 records
+# https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt
+
+# AdAway default blocklist ~400 records
+https://adaway.org/hosts.txt
+
+# AdAway
+https://raw.githubusercontent.com/AdAway/adaway.github.io/master/hosts.txt
+
+# Malware domain list ~1100 records
+#https://www.malwaredomainlist.com/hostslist/hosts.txt
+
+# AD servers by yoyo.org ~3000 records
+https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
+
+# AD servers list by Dan Pollock ~14500 records
+https://someonewhocares.org/hosts/hosts
+
+# winhelp2002.mvps.org ~12000 records
+http://winhelp2002.mvps.org/hosts.txt
+
+# hpHosts ~46000 records
+# https://hosts-file.net/ad_servers.txt
+
+# Anudeep's Blacklist ~43000 records
+# https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt

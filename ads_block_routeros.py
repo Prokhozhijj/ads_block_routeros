@@ -1,76 +1,12 @@
 #!/usr/bin/python3
 
-"""
-   Blocks AD domains on Mikrotik routers with RouterOS installed.
+""" Copyright (c) 2021 Prokhozhijj
+    Blocks AD domains on Mikrotik routers with RouterOS installed.
    
-   The script was tested under MS Windows 10 only but should work under 
-   any posix like OS as well.
+    https://github.com/Prokhozhijj/ads_block_routeros
    
-   You may use this script without any limitations, free of charge.
-   
-   You may modify this script for your own needs as you see fit without 
-   obtaining the author's permission, free of charge.
-   But you must keep the original authorship of that program.
-   
-   The author takes no any responsibility for any script's failure and/or 
-   caused damage to your hardware involved in script's work.
-   So, use this script at your own risk. Always take backup of your router
-   configuration before using the script.
-   
-   Algorithm:
-      Script checks router's DNS cache and compares it with allowed and denied
-      domain names. If new domain to block is found, script adds it into the 
-      static domains list (IP -> DNS -> Static) and binds it to an IP address 
-      which is specified by value of parameter ip_to_redirect in the config 
-      file. Then script flushes router's DNS cache.
-      
-      Domain names to block are obtained from URLs which are located in the 
-      file with a name specified by a value of ads_blockers_urls_file parameter 
-      in the config file. The script caches obtained denied domain names in
-      the file specified by value of denied_domains_file parameter in the 
-      config file and checks cached file for its freshness within interval
-      specified by value of parameter allowed_domains_file_age in the config
-      file. If the file is not expired, it won't be updated.
-      
-      If you want to exclude some domain names from blocking you need to place
-      their list in a file which is specified by value of allowed_domains_file
-      parameter in the config file.
-      
-      This script can maintain several routers. All you need is just to add them
-      into the config file.
-   
-   Using the script is very simple:
-    - download the script with provided templates to any folder on your host;
-      For example:
-        cd your_scripts_folder
-        git clone https://www.github.com/prokhozhijj/ads_block_routeros
-    - open access to the Internet for this host;
-    - install Python 3.6 or later;
-    - install 3d party modules (see Requirements section for details);
-      For example:
-        pip install -U librouteros
-    - enable "api" on a router (menu IP -> Services) for a host on which
-      the script is located;
-    - create a file with a list of allowed domain names (they won't be blocked 
-      by the script under no circumstances);
-    - create a file with a list of URLs of ADs blocking providers;
-    - create config file ads_block_routeros.cfg from template in the proper
-      folder (see below) and fill it with your values:
-        - for Windows the folder is:
-            %ProgramData%\ads_block_routeros\
-        - for Linux the folder is:
-            \etc\
-    - start the script without arguments;
-    - enjoy.
-   
-   Requirements: 
-    - Python 3.6 or later;
-    - "librouteros" python module;
-    - RouterOS 6.48 or later (earlier versions were not tested but the scipt may 
-      work with them as well);
-    - enabled "api" in IP -> Services on a router for the host with the script.
-   
-   Created by prokhozhijj.
+    This is licensed under an MIT license. See the README.md
+    file for more information.
 """
 
 

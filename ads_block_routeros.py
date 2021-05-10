@@ -342,8 +342,12 @@ def update_denied_domains_file(
     """
     # calculating difference between last time when file was modified
     # and the current time
-    diff = (timegm(gmtime()) - getmtime(pdomains_file))/3600
-    if diff > ptime_diff:
+    diff = None
+    if os.path.isfile(pdomains_file):
+        diff = (timegm(gmtime()) - getmtime(pdomains_file))/3600
+    else:
+        Path(pdomains_file).touch()
+    if diff is None or diff > ptime_diff:
         urls = get_urls_from_file(purls_file)
         denied_domains = get_domains_from_urls(urls)
         write_domains_to_file(pdomains_file, denied_domains)

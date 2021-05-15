@@ -100,10 +100,21 @@ class GlobalConfig(ConfigParser):
         """
         cmn = 'COMMON'
         conn_str = self[cmn][prouter]
-        user = conn_str.split('/')[0]
-        password = conn_str.split('/')[1].split('@')[0]
-        ip = conn_str.split('/')[1].split('@')[1].split(':')[0]
-        # method = conn_str.split('/')[1].split('@')[1].split(':')[1]
+        # conn_str format
+        # router1=user/password@IP:plain
+        last_at = conn_str.rfind('@')
+        first_slash = conn_str.find('/')
+        last_colon = conn_str.rfind(':')
+        if last_at <= 0 \
+           or first_slash <= 0 \
+           or last_colon <= 0 \
+           or last_colon < last_at \
+           or last_colon < first_slash \
+           or last_at < first_slash:
+            raise ValueError(f'Incorrect value for {prouter} = {conn_str}')
+        user = conn_str[0:first_slash]
+        password = conn_str[first_slash+1:last_at]
+        ip = conn_str[last_at+1:last_colon]
         method = 'plain'
         return user, password, ip, method
 
